@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Pet Matcher</title>
+    <style>
+        /* Basic styling */
+    </style>
+</head>
+<body>
+    <h1>Find Your Birthday Pet</h1>
+    <form id="birthday-form">
+        <label for="birthday">Enter Your Birthday:</label>
+        <input type="date" id="birthday" name="birthday" required>
+        <button type="submit">Find My Pet</button>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        document.getElementById('birthday-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const birthday = new Date(document.getElementById('birthday').value);
+            const birthdayMonthDay = birthday.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit' });
+
+            const pets = [
+                { name: "Grumpy Cat", birthday: "04-04" },
+                { name: "Boo", birthday: "03-16" },
+                // Add more pets here
+            ];
+
+            const result = pets.find(pet => pet.birthday === birthdayMonthDay);
+
+            document.getElementById('result').innerHTML = result 
+                ? `You share a birthday with ${result.name}!`
+                : "No famous pet shares your birthday.";
+        });
+    </script>
+</body>
+</html>
